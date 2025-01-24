@@ -1,4 +1,8 @@
 @extends('crm.layout')
 @section('content')
-<h1>hello quotes</h1>
+
+
+<livewire:quote.create-quote/>
+
+
 @endsection
