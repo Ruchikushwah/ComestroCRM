@@ -1,4 +1,5 @@
 @extends('crm.layout')
 @section('content')
-<h1>hello vendor</h1>
+
+<livewire:vendor.create-vendor/>
 @endsection
