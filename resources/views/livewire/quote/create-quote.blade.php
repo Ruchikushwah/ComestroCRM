@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit" class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+<form wire:submit.prevent="submit" class=" w-full  p-4 bg-white shadow-md rounded-lg grid grid-cols-2 gap-5">
     <h2 class="text-2xl font-semibold text-gray-700 mb-6">Create a Quote</h2>
 
     <div class="mb-4">
@@ -52,7 +52,7 @@
     <!-- Repeat similar structure for other fields, e.g. contact_name, account_name, etc. -->
 
     <div class="flex justify-end">
-        <button type="submit" class="mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">
+        <button type="submit" class="mt-4 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">
             Create Quote
         </button>
     </div>

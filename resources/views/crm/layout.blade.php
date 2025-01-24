@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <div class="w-full flex">
-        <div class="w-3/12">
+    <div class="w-full flex gap-6 ">
+        <div class="w-3/12 ">
 
             <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
@@ -20,7 +20,7 @@
                 </svg>
             </button>
 
-            <aside id="default-sidebar" class="top-18 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <aside id="default-sidebar" class=" left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0   fixed" aria-label="Sidebar">
                 <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <ul class="space-y-2 font-medium">
                         <li>
@@ -86,9 +86,6 @@
                     </ul>
                 </div>
             </aside>
-
-
-
         </div>
         @section('content')
         @show

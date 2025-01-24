@@ -13,7 +13,6 @@ class CreateContact extends Component
     public $mobile;
     public $assistant;
     public $lead_source;
-    public $vendor_name;
     public $title;
     public $department;
     public $date_of_birth;
@@ -33,10 +32,10 @@ class CreateContact extends Component
     public $description;
 
     protected $rules = [
-        'first_name' => 'required|string|max:255',
-        'last_name' => 'required|string|max:255',
+        'first_name' => 'nullable|string|max:255',
+        'last_name' => 'nullable|string|max:255',
         'account_name' => 'nullable|string|max:255',
-        'email' => 'required|email|max:255',
+        'email' => 'nullable|email|max:255',
         'mobile' => 'nullable|numeric',
         'assistant' => 'nullable|string|max:255',
         'lead_source' => 'nullable|string|max:255',

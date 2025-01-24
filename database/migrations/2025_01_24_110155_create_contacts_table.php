@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('assistant')->nullable();
             $table->string('lead_source')->nullable();
-            $table->string('vendor_name')->nullable();
             $table->string('title')->nullable();
             $table->string('department')->nullable();
             $table->date('date_of_birth')->nullable();
