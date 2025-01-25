@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CreateLead;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,10 @@ Route::get('/', function () {
     Route::get("/account",function(){
         return view("crm.account");
     })->name("crm.account");
+    
+
+Route::get('/create-lead', CreateLead::class)->name('create-lead');
+
 
 
 
