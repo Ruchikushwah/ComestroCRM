@@ -89,11 +89,7 @@
 
         <!-- Submit Button -->
         <div>
-            <button
-                type="submit"
-                class="w-full px-4 py-2 text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                Save Lead
-            </button>
+        <button type="submit">{{ $lead_id ? 'Update' : 'Create' }}</button>
         </div>
     </form>
 </div>

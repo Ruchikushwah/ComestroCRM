@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\CreateLead;
+use App\Livewire\ManageLeads;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,7 +33,8 @@ Route::get('/', function () {
     
 
 Route::get('/create-lead', CreateLead::class)->name('create-lead');
-
+Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
+Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
 
 
 
