@@ -65,6 +65,7 @@ class CreateLead extends Component
         // Optionally send a success message
         session()->flash('message', 'Lead successfully created!');
     }
+    
 
     public function render()
     {
