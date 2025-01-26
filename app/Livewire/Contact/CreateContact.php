@@ -104,6 +104,7 @@ class CreateContact extends Component
     {
         $validatedData = $this->validate();
 
+
         if ($this->contact_id) {
             // Update existing contact
             Contact::find($this->contact_id)->update($validatedData);
@@ -113,6 +114,7 @@ class CreateContact extends Component
             Contact::create($validatedData);
             session()->flash('message', 'Contact created successfully!');
         }
+
 
         return redirect()->route('contact.manage-contact'); // Redirect back to create route
     }
