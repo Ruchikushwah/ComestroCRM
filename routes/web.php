@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Contact\CreateContact;
 use App\Livewire\CreateLead;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,5 @@ Route::get('/', function () {
 
 Route::get('/create-lead', CreateLead::class)->name('create-lead');
 
-
-
-
+Route::get('/create-contact', CreateContact::class)->name('create-contact');
  });
