@@ -43,7 +43,8 @@
                         {{ $lead->phone }}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-teal-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="{{route ('create-lead.edit', $lead->id)}}" wire:navigate class="font-medium text-teal-600 dark:text-blue-500 hover:underline">Edit</a>
+                        
                     </td>
                 </tr>
                 @empty
