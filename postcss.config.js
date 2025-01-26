@@ -1,6 +1,9 @@
-export default {
-    plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
+export default defineConfig({
+    css: {
+        postcss: {
+            options: {
+                exclude: /node_modules/,
+            },
+        },
     },
-};
+});
