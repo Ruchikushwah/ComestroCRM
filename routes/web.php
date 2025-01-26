@@ -51,6 +51,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('auth.register.post');
     Route::get('/verify-otp',  'showOtpForm')->name('show.otp.form');
 
+
     // OTP verification handling route (POST request to verify OTP)
     Route::post('verify-otp',  'verifyOtp')->name('auth.verify-otp');
     Route::post('send-otp', 'sendOtp')->name('auth.sendOtp');

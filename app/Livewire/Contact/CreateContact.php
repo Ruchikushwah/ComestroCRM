@@ -7,6 +7,10 @@ use Livewire\Component;
 
 class CreateContact extends Component
 {
+    public $contact_id;
+    
+    
+
     public $first_name;
     public $last_name;
     public $account_name;
@@ -40,7 +44,6 @@ class CreateContact extends Component
         'mobile' => 'nullable|numeric',
         'assistant' => 'nullable|string|max:255',
         'lead_source' => 'nullable|string|max:255',
-        'vendor_name' => 'nullable|string|max:255',
         'title' => 'nullable|string|max:255',
         'department' => 'nullable|string|max:255',
         'date_of_birth' => 'nullable|date',
@@ -59,17 +62,61 @@ class CreateContact extends Component
         'other_country' => 'nullable|string|max:255',
         'description' => 'nullable|string',
     ];
+    
+    
+    public function mount($id = null)
+    {
+        if ($id) {
+            // Load contact data if $id is provided
+            $contact = Contact::find($id);
+            if ($contact) {
+                $this->first_name = $contact->first_name;
+                $this->last_name = $contact->last_name;
+                $this->account_name = $contact->account_name;
+                $this->email = $contact->email;
+                $this->mobile = $contact->mobile;
+                $this->assistant = $contact->assistant;
+                $this->lead_source = $contact->lead_source;
+                $this->title = $contact->title;
+                $this->department = $contact->department;
+                $this->date_of_birth = $contact->date_of_birth;
+                $this->asst_phone = $contact->asst_phone;
+                $this->secondary_email = $contact->secondary_email;
+                $this->reporting_to = $contact->reporting_to;
+                $this->mailing_street = $contact->mailing_street;
+                $this->mailing_city = $contact->mailing_city;
+                $this->mailing_state = $contact->mailing_state;
+                $this->mailing_pincode = $contact->mailing_pincode;
+                $this->mailing_country = $contact->mailing_country;
+                $this->other_street = $contact->other_street;
+                $this->other_city = $contact->other_city;
+                $this->other_state = $contact->other_state;
+                $this->other_pincode = $contact->other_pincode;
+                $this->other_country = $contact->other_country;
+                $this->description = $contact->description;
+            } else {
+                session()->flash('error', 'Contact Not Found.');
+                return redirect()->route('create.contact');
+            }
+        }
+    }
     public function save()
     {
-        // Validate input
         $validatedData = $this->validate();
 
-        // Save the data to the database
-        Contact::create($validatedData);
 
-        // Reset the form and display a success message
-        $this->reset();
-        session()->flash('message', 'Contact created successfully!');
+        if ($this->contact_id) {
+            // Update existing contact
+            Contact::find($this->contact_id)->update($validatedData);
+            session()->flash('message', 'Contact updated successfully!');
+        } else {
+            // Create new Contact
+            Contact::create($validatedData);
+            session()->flash('message', 'Contact created successfully!');
+        }
+
+
+        return redirect()->route('contact.manage-contact'); // Redirect back to create route
     }
 
     public function render()

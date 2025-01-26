@@ -83,9 +83,9 @@
             <button
                 type="submit"
                 class=" px-4 py-2 text-white  rounded-md bg-slate-500">
-                Save Contact
+                {{ $contact_id ? 'Update' : 'Create' }}
             </button>
         </div>
     </form>
-    
+
 </div>
