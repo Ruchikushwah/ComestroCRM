@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Contact;
 
+use App\Models\Contact;
 use Livewire\Component;
 
 class CreateContact extends Component
@@ -64,7 +65,7 @@ class CreateContact extends Component
         $validatedData = $this->validate();
 
         // Save the data to the database
-        \App\Models\Contact::create($validatedData);
+        Contact::create($validatedData);
 
         // Reset the form and display a success message
         $this->reset();
