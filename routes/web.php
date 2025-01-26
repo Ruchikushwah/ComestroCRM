@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Livewire\Contact\CreateContact;
 use App\Livewire\CreateLead;
+use App\Livewire\ManageContact;
 use App\Livewire\ManageLeads;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +33,7 @@ Route::prefix("crm")->group(function () {
     Route::get("/account", function () {
         return view("crm.account");
     })->name("crm.account");
-
+    
 
     Route::get('/create-lead', CreateLead::class)->name('create-lead');
     Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
@@ -49,3 +51,15 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('send-otp', 'sendOtp')->name('auth.sendOtp');
 
 });
+
+Route::get('/create-lead', CreateLead::class)->name('create-lead');
+Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
+Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
+
+Route::get('/create-contact', CreateContact::class)->name('contact.create');
+//Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
+//Route::get('/manage-contact', ManageContact::class)->name('manage-contact');
+
+
+
+ });
