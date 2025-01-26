@@ -3,8 +3,7 @@
         <input
             type="text"
             placeholder="Search..."
-            class="border px-4 py-2 rounded"
-            wire:model.debounce.500ms="search" />
+            class="border px-4 py-2 rounded" />
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -54,7 +53,4 @@
             </tbody>
         </table>
     </div>
-    <div class="mt-4">
-        {{ $leads->links() }}
-    </div>
-</div>
+   </div>
