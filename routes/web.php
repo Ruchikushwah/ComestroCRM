@@ -13,7 +13,7 @@ Route::get('/', function () {
 });
 Route::prefix("crm")->group(function () {
     Route::get("/", function () {
-        return view("crm.dashboard");
+        return view("crm.dashboard")->name('crm.dashboard');
     });
     Route::get("/lead", function () {
         return view("crm.lead");
@@ -34,12 +34,12 @@ Route::prefix("crm")->group(function () {
     Route::get("/account", function () {
         return view("crm.account");
     })->name("crm.account");
-    
+
 
     Route::get('/create-lead', CreateLead::class)->name('create-lead');
     Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
     Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
-    Route::get('/create-contact', CreateContact::class)->name('contact.create');
+    Route::get('/create-contact', CreateContact::class)->name('create-contact');
     Route::get('/create-contact/edit/{id}', CreateContact::class)->name('create-contact.edit');
     Route::get('/manage-contact', ManageContact::class)->name('contact.manage-contact');
 });
@@ -55,6 +55,5 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     // OTP verification handling route (POST request to verify OTP)
     Route::post('verify-otp',  'verifyOtp')->name('auth.verify-otp');
     Route::post('send-otp', 'sendOtp')->name('auth.sendOtp');
-
+    Route::post('/logout',  'logout')->name('auth.logout');
 });
-

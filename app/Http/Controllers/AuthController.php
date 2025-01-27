@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::id()) {
-            return redirect()->route('crm.dashboard');
+            return redirect()->route('crm.lead');
         }
         return view('auth.login');
     }
@@ -121,6 +121,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email,' . $request->id . ',id',
             'contact' => 'required|digits:10|unique:users,contact',
+            // 'password' => 'required|string|min:6',
             
         ], [
             'email.unique' => 'The email address is already taken.',
@@ -133,6 +134,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->contact = $request->contact;
+        //$user->password = bcrypt($request->password); 
     
         $user->save();
     
