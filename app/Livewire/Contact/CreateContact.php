@@ -8,8 +8,8 @@ use Livewire\Component;
 class CreateContact extends Component
 {
     public $contact_id;
-    
-    
+
+
 
     public $first_name;
     public $last_name;
@@ -37,10 +37,10 @@ class CreateContact extends Component
     public $description;
 
     protected $rules = [
-        'first_name' => 'nullable|string|max:255',
-        'last_name' => 'nullable|string|max:255',
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
         'account_name' => 'nullable|string|max:255',
-        'email' => 'nullable|email|max:255',
+        'email' => 'required|email|max:255',
         'mobile' => 'nullable|numeric',
         'assistant' => 'nullable|string|max:255',
         'lead_source' => 'nullable|string|max:255',
@@ -62,13 +62,14 @@ class CreateContact extends Component
         'other_country' => 'nullable|string|max:255',
         'description' => 'nullable|string',
     ];
-    
-    
+
+
     public function mount($id = null)
     {
         if ($id) {
             // Load contact data if $id is provided
             $contact = Contact::find($id);
+            $this->contact_id = $id;
             if ($contact) {
                 $this->first_name = $contact->first_name;
                 $this->last_name = $contact->last_name;
@@ -116,7 +117,7 @@ class CreateContact extends Component
         }
 
 
-        return redirect()->route('contact.manage-contact'); // Redirect back to create route
+        return redirect()->route('crm.contact'); // Redirect back to create route
     }
 
     public function render()

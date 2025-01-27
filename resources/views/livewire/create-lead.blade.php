@@ -1,3 +1,4 @@
+
 <div class="w-full mx-auto p-6 bg-gray-200 shadow-md rounded-md">
     @if (session()->has('message'))
     <div class="mb-4 text-green-600 font-semibold">
@@ -5,7 +6,7 @@
     </div>
     @endif
 
-   
+
     <form wire:submit.prevent="save" class=" grid grid-cols-2 gap-4">
         <!-- Lead Owner -->
 
@@ -89,7 +90,7 @@
 
         <!-- Submit Button -->
         <div>
-        <button type="submit">{{ $lead_id ? 'Update' : 'Create' }}</button>
+            <button type="submit">{{ $lead_id ? 'Update' : 'Create' }}</button>
         </div>
     </form>
 </div>
