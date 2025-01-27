@@ -9,8 +9,6 @@ class CreateContact extends Component
 {
     public $contact_id;
 
-
-
     public $first_name;
     public $last_name;
     public $account_name;
@@ -70,54 +68,42 @@ class CreateContact extends Component
             // Load contact data if $id is provided
             $contact = Contact::find($id);
             $this->contact_id = $id;
+
             if ($contact) {
-                $this->first_name = $contact->first_name;
-                $this->last_name = $contact->last_name;
-                $this->account_name = $contact->account_name;
-                $this->email = $contact->email;
-                $this->mobile = $contact->mobile;
-                $this->assistant = $contact->assistant;
-                $this->lead_source = $contact->lead_source;
-                $this->title = $contact->title;
-                $this->department = $contact->department;
-                $this->date_of_birth = $contact->date_of_birth;
-                $this->asst_phone = $contact->asst_phone;
-                $this->secondary_email = $contact->secondary_email;
-                $this->reporting_to = $contact->reporting_to;
-                $this->mailing_street = $contact->mailing_street;
-                $this->mailing_city = $contact->mailing_city;
-                $this->mailing_state = $contact->mailing_state;
-                $this->mailing_pincode = $contact->mailing_pincode;
-                $this->mailing_country = $contact->mailing_country;
-                $this->other_street = $contact->other_street;
-                $this->other_city = $contact->other_city;
-                $this->other_state = $contact->other_state;
-                $this->other_pincode = $contact->other_pincode;
-                $this->other_country = $contact->other_country;
-                $this->description = $contact->description;
+                // Dynamically assign contact attributes to component properties
+                foreach ($contact->getAttributes() as $key => $value) {
+                    if (property_exists($this, $key)) {
+                        $this->$key = $value;
+                    }
+                }
             } else {
                 session()->flash('error', 'Contact Not Found.');
                 return redirect()->route('create.contact');
             }
         }
     }
+
     public function save()
     {
+        // Validate data
         $validatedData = $this->validate();
-
 
         if ($this->contact_id) {
             // Update existing contact
-            Contact::find($this->contact_id)->update($validatedData);
+            $contact = Contact::findOrFail($this->contact_id);
+            $contact->update($validatedData);
             session()->flash('message', 'Contact updated successfully!');
         } else {
-            // Create new Contact
+            // Create new contact
             Contact::create($validatedData);
             session()->flash('message', 'Contact created successfully!');
         }
 
 
+
         return redirect()->route('crm.contact'); // Redirect back to create route
+
+        return redirect()->route('crm.contact'); // Redirect to manage contact
     }
 
     public function render()
