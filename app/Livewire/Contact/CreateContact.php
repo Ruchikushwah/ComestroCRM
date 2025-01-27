@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Contact;
 
+use App\Models\Contact;
 use Livewire\Component;
 
 class CreateContact extends Component
 {
+    public $contact_id;
     public $first_name;
     public $last_name;
     public $account_name;
@@ -39,7 +41,6 @@ class CreateContact extends Component
         'mobile' => 'nullable|numeric',
         'assistant' => 'nullable|string|max:255',
         'lead_source' => 'nullable|string|max:255',
-        'vendor_name' => 'nullable|string|max:255',
         'title' => 'nullable|string|max:255',
         'department' => 'nullable|string|max:255',
         'date_of_birth' => 'nullable|date',
@@ -58,17 +59,44 @@ class CreateContact extends Component
         'other_country' => 'nullable|string|max:255',
         'description' => 'nullable|string',
     ];
+
+    public function mount($id = null)
+    {
+        if ($id) {
+            // Load contact data if $id is provided
+            $contact = Contact::find($id);
+
+            if ($contact) {
+                // Dynamically assign contact attributes to component properties
+                foreach ($contact->getAttributes() as $key => $value) {
+                    if (property_exists($this, $key)) {
+                        $this->$key = $value;
+                    }
+                }
+            } else {
+                session()->flash('error', 'Contact Not Found.');
+                return redirect()->route('create.contact');
+            }
+        }
+    }
+
     public function save()
     {
-        // Validate input
+        // Validate data
         $validatedData = $this->validate();
 
-        // Save the data to the database
-        \App\Models\Contact::create($validatedData);
+        if ($this->contact_id) {
+            // Update existing contact
+            $contact = Contact::findOrFail($this->contact_id);
+            $contact->update($validatedData);
+            session()->flash('message', 'Contact updated successfully!');
+        } else {
+            // Create new contact
+            Contact::create($validatedData);
+            session()->flash('message', 'Contact created successfully!');
+        }
 
-        // Reset the form and display a success message
-        $this->reset();
-        session()->flash('message', 'Contact created successfully!');
+        return redirect()->route('crm.contact'); // Redirect to manage contacts
     }
 
     public function render()
