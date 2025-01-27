@@ -1,11 +1,16 @@
+
+
+<div class=" w-full py-6 px-4  shadow-md rounded-md  items-center      ">
+
 <div class="w-full mx-6 py-6 p-6 px-4 m-4 bg-slate-200 shadow-md rounded-md">
+
     @if (session()->has('message'))
         <div class="mb-4 text-green-600 font-semibold">
             {{ session('message') }}
         </div>
     @endif
+    <form wire:submit.prevent="save" class="grid grid-cols-4 gap-6 bg-slate-200    py-8 px-8 rounded-md  ">
 
-    <form wire:submit.prevent="save" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!-- First Name -->
         <div>
             <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
@@ -13,7 +18,7 @@
                 type="text"
                 id="first_name"
                 wire:model="first_name"
-                class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 placeholder="Enter first name">
             @error('first_name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
@@ -25,7 +30,7 @@
                 type="text"
                 id="last_name"
                 wire:model="last_name"
-                class="mt-1 block w-full rounded-md border-gray-300 bg-white py-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                class="mt-1 block w-full rounded-md border-gray-300 bg-white py-2 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 placeholder="Enter last name">
             @error('last_name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
@@ -100,9 +105,18 @@
         <div class="col-span-2">
             <button
                 type="submit"
+
+                class=" px-4 py-2 text-white  rounded-md bg-slate-500">
+                {{ $contact_id ? 'Update Contact' : 'Create Contact' }}
+            </button>
+        </div>
+    </form>
+
+
                 class="w-full sm:w-auto px-4 py-2 text-white rounded-md bg-slate-500"  wire:navigate>
                 {{ $contact_id ? 'Update' : 'Create' }}
             </button>
         </div>
     </form>
+
 </div>
