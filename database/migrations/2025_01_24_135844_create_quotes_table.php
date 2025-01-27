@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('shipping_code')->nullable();
             $table->string('shipping_country')->nullable();
             $table->timestamps();
+
         });
     }
 
