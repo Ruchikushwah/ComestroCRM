@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Livewire\Contact\CreateContact;
 use App\Livewire\Contact\ManageContact;
 use App\Livewire\CreateLead;
+use App\Livewire\Quote\CreateQuote;
 
 use App\Livewire\ManageLeads;
 use Illuminate\Support\Facades\Route;
@@ -35,14 +36,17 @@ Route::prefix("crm")->group(function () {
         return view("crm.account");
     })->name("crm.account");
 
+Route::get('/create-quote',CreateQuote::class)->name('create-quote');
+Route::get('/create-quote/edit/{id}',CreateQuote::class)->name('create-quote.edit');
+//Route::get('/manage-quote',ManageQuote::class)->name('quote.manage-quote');
 
+});
     Route::get('/create-lead', CreateLead::class)->name('create-lead');
     Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
     Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
     Route::get('/create-contact', CreateContact::class)->name('create-contact');
     Route::get('/create-contact/edit/{id}', CreateContact::class)->name('create-contact.edit');
     Route::get('/manage-contact', ManageContact::class)->name('contact.manage-contact');
-});
 
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'showLoginForm')->name('auth.login');
