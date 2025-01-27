@@ -22,7 +22,7 @@ Route::prefix("crm")->group(function () {
     Route::get("/contact", function () {
         return view("crm.contact");
     })->name("crm.contact");
-
+    
     Route::get("/quotes", function () {
         return view("crm.quotes");
     })->name("crm.quotes");

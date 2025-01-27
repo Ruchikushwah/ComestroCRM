@@ -18,7 +18,6 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-
     public function login(Request $request)
     {
         $request->validate([
@@ -122,29 +121,33 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users,email,' . $request->id . ',id',
             'contact' => 'required|digits:10|unique:users,contact',
             // 'password' => 'required|string|min:6',
-            
+
         ], [
             'email.unique' => 'The email address is already taken.',
             'contact.unique' => 'The contact number is already in use.',
             'contact.digits' => 'The contact number must be exactly 10 digits.',
-          
+
         ]);
-    
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->contact = $request->contact;
         //$user->password = bcrypt($request->password); 
-    
+
         $user->save();
-    
+
         // Send confirmation email
         Mail::send('emails.registration', ['user' => $user], function ($message) use ($user) {
             $message->to($user->email)
-                    ->subject('Registration Successful');
+                ->subject('Registration Successful');
         });
-    
+
         return redirect()->route('auth.login')->with('success', 'Registration successful. A confirmation email has been sent to your email address.');
     }
-    
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('auth.login')->with('success', 'You have been logged out.');
+    }
 }
