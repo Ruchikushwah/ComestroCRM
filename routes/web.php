@@ -14,7 +14,7 @@ Route::get('/', function () {
 });
 Route::prefix("crm")->group(function () {
     Route::get("/", function () {
-        return view("crm.dashboard")->name('crm.dashboard');
+        return view("crm/dashboard")->name('crm.dashboard');
     });
     Route::get("/lead", function () {
         return view("crm.lead");
@@ -40,7 +40,6 @@ Route::get('/create-quote',CreateQuote::class)->name('create-quote');
 Route::get('/create-quote/edit/{id}',CreateQuote::class)->name('create-quote.edit');
 //Route::get('/manage-quote',ManageQuote::class)->name('quote.manage-quote');
 
-});
     Route::get('/create-lead', CreateLead::class)->name('create-lead');
     Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
     Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
@@ -48,6 +47,7 @@ Route::get('/create-quote/edit/{id}',CreateQuote::class)->name('create-quote.edi
     Route::get('/create-contact/edit/{id}', CreateContact::class)->name('create-contact.edit');
     Route::get('/manage-contact', ManageContact::class)->name('contact.manage-contact');
 
+});
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'showLoginForm')->name('auth.login');
     Route::get("/register", "showRegister")->name('auth.register');

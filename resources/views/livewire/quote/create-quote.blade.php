@@ -6,7 +6,7 @@
     @endif
     <div class="flex justify-between  items-center w-full">
         <h2 class="text-2xl font-semibold">Manage Quote</h2>
-        <a href="{{route('quote.manage-quote')}}" class="bg-teal-700  hover:bg-teal-900 text-white px-4 py-2 rounded">Manage Quote</a>
+        {{-- <a href="{{route('quote.manage-quote')}}" class="bg-teal-700  hover:bg-teal-900 text-white px-4 py-2 rounded">Manage Quote</a> --}}
     
     </div>
     <form wire:submit.prevent="save" class=" grid grid-cols-2 gap-4">
