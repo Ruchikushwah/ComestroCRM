@@ -1,3 +1,4 @@
+<div class="w-full mx-auto p-6 shadow-md rounded-md">
 
 <div class="w-full mx-auto p-6 bg-gray-200 shadow-md rounded-md">
     @if (session()->has('message'))
@@ -5,6 +6,7 @@
             {{ session('message') }}
         </div>
     @endif
+    <form wire:submit.prevent="save" class=" grid grid-cols-2 gap-4  bg-gray-200 px-4 py-5">
 
     <form wire:submit.prevent="save" class=" grid grid-cols-2 gap-4">
         <div>
