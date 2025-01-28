@@ -5,6 +5,8 @@ use App\Livewire\Contact\CreateContact;
 use App\Livewire\Contact\ManageContact;
 use App\Livewire\CreateLead;
 use App\Livewire\Quote\CreateQuote;
+use App\Livewire\Quote\ManageQuote;
+
 
 use App\Livewire\ManageLeads;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +40,7 @@ Route::prefix("crm")->group(function () {
 
 Route::get('/create-quote',CreateQuote::class)->name('create-quote');
 Route::get('/create-quote/edit/{id}',CreateQuote::class)->name('create-quote.edit');
-//Route::get('/manage-quote',ManageQuote::class)->name('quote.manage-quote');
+Route::get('/manage-quote',ManageQuote::class)->name('quote.manage-quote');
 
     Route::get('/create-lead', CreateLead::class)->name('create-lead');
     Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
