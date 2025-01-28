@@ -11,7 +11,7 @@
             <h1 style="margin: 0; font-size: 24px;">🎉 Registration Successful!</h1>
         </header>
         <main style="padding: 20px; color: #333333;">
-            <p style="font-size: 16px; line-height: 1.5; color: #555555;">
+            <p style="font-size: 16px; line-height: 1.5; color: #555555; ">
                 Dear <strong>{{ $user->name }}</strong>,
             </p>
             <p style="font-size: 16px; line-height: 1.5; color: #555555;">

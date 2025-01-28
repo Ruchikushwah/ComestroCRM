@@ -12,9 +12,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        if (Auth::id()) {
-            return redirect()->route('crm.lead');
-        }
+
         return view('auth.login');
     }
 
@@ -76,7 +74,7 @@ class AuthController extends Controller
         $user->save();
 
         Auth::login($user);
-        return redirect()->route('crm.dashboard')->with('success', 'Logged in successfully.');
+        return redirect()->route('crm.lead')->with('success', 'Logged in successfully.');
     }
     public function sendOtp(Request $request)
     {
@@ -145,6 +143,8 @@ class AuthController extends Controller
 
         return redirect()->route('auth.login')->with('success', 'Registration successful. A confirmation email has been sent to your email address.');
     }
+
+
     public function logout()
     {
         Auth::logout();

@@ -1,10 +1,10 @@
-<div class="w-full mx-auto p-6 bg-gray-200 shadow-md rounded-md">
+<div class="w-full mx-auto p-6 shadow-md rounded-md">
     @if (session()->has('message'))
         <div class="mb-4 text-green-600 font-semibold">
             {{ session('message') }}
         </div>
     @endif
-    <form wire:submit.prevent="save" class=" grid grid-cols-2 gap-4">
+    <form wire:submit.prevent="save" class=" grid grid-cols-2 gap-4  bg-gray-200 px-4 py-5">
         <div>
             <label for="lead_owner" class="block text-sm font-medium text-gray-700">Lead Owner</label>
             <input type="text" id="lead_owner" wire:model="lead_owner"
