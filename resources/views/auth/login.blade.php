@@ -10,23 +10,52 @@
 
 <body>
 
-    <div class="w-full max-w-sm p-6 bg-white rounded-lg shadow mt-10 ">
-        <h2 class="text-2xl font-semibold text-center text-gray-700">Login</h2>
-        <form id="send-otp-form" action="{{ route('auth.sendOtp') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                <input type="email" id="otp_email" name="email" required
-                    class="w-full px-4 py-2 mt-2 bg-gray-100 border rounded-lg focus:ring">
-                @error('email')
-                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div class="bg-white shadow-lg rounded-lg flex w-full max-w-4xl">
+        <!-- Left Side - Sign In -->
+        <div class="w-1/2 p-8">
+            <img src="/comestro.png" alt="Logo" class="h-10 mb-4">
+            <h2 class="text-2xl font-semibold">Sign in</h2>
+            <p class="text-gray-600 text-sm mb-6">to access CRM</p>
+
+            <form wire:submit.prevent="submit" class="space-y-4">
+                <input type="email" wire:model="email" placeholder="Email address or mobile number"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+
+                <button type="submit"
+                    class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+                    Next
+                </button>
+            </form>
+
+            <div class="mt-6">
+                <p class="text-gray-600 text-sm mb-2">Sign in using</p>
+                <div class="flex space-x-3">
+                    <button class="p-2 bg-gray-200 rounded"><img src="/google icon.png" class="h-6"></button>
+                    
+                </div>
             </div>
-            <button type="submit" class="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-                Send OTP
+
+            <p class="text-sm text-gray-600 mt-6">Don't have a Comestro account? 
+                <a href="{{route('auth.register')}}" class="text-blue-500 font-semibold">Sign up now</a>
+            </p>
+        </div>
+
+        <!-- Right Side - MFA Info -->
+        <div class="w-1/2 bg-gray-50 p-8 flex flex-col justify-center text-center">
+            <img src="/signin.png" alt="MFA" class="mx-auto w-48">
+            <h3 class="text-lg font-semibold mt-4">Empowering businesses with secure authentication.</h3>
+            <p class="text-gray-600 text-sm mt-2">
+            Enhance your security with OneAuth 2FA. Your accounts, your control.
+            </p>
+            <button class="mt-4 bg-blue-100 text-blue-600 px-4 py-2 rounded-full">
+                Learn more
             </button>
-        </form>
+        </div>
     </div>
+</div>
+
 
     <div id="otp-modal" class="hidden fixed inset-0  items-center justify-center bg-gray-900 bg-opacity-50">
         <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
@@ -51,7 +80,7 @@
                     <button type="button" id="close-modal" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
                         Cancel
                     </button>
-                    <button type="submit" class="bg-indigo-500 text-white font-bold py-2 px-4 rounded hover:bg-indigo-600">
+                    <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
                         Verify OTP
                     </button>
                 </div>

@@ -9,7 +9,7 @@
                 <path d="M3 10v11h18V10l-9-7-9 7Zm9-4.436 7 5.44V19H5v-7.996l7-5.44ZM12 15c1.103 0 2-.897 2-2s-.897-2-2-2-2 .897-2 2 .897 2 2 2Z" />
             </svg>
         </div>
-        <h1 class="text-xl font-semibold text-gray-800 ml-4">Welcome,{{ $userName }} </h1>
+        <h1 class="text-xl font-semibold text-gray-800 ml-4">Welcome,</h1>
     </div>
 
     <!-- Cards Section -->
