@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::prefix("crm")->group(function () {
     Route::get("/", function () {
-        return view("crm/dashboard")->name('crm.dashboard');
+        return view("crm/dashboard");
     });
     Route::get("/lead", function () {
         return view("crm.lead");
