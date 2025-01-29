@@ -87,5 +87,5 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     // OTP verification handling route (POST request to verify OTP)
     Route::post('verify-otp',  'verifyOtp')->name('auth.verify-otp');
     Route::post('send-otp', 'sendOtp')->name('auth.sendOtp');
-    Route::post('/logout',  'logout')->name('auth.logout');
+    Route::get('/logout',  'logout')->name('auth.logout');
 });
