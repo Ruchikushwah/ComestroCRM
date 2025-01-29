@@ -65,22 +65,40 @@ class CreateQuote extends Component
         }
     }
 
-    public function save()
+    // public function save()
+    // {
+    //     $validatedData = $this->validate();
+
+    //     if ($this->quote_id) {
+    //         //Quote create
+    //         Quote::find($this->quote_id)->update($validatedData);
+    //         session()->flash('message', 'Quote updated successfully!');
+    //     } else {
+    //         //quote update
+    //         Quote::create($validatedData);
+    //         session()->flash('message', 'Quote created successfully!');
+    //     }
+
+    //     // return redirect()->route('crm.quote'); // Redirect back to create route
+    // }
+
+        public function save()
     {
         $validatedData = $this->validate();
 
-        if ($this->quote_id) {
-            //Quote create
-            Quote::find($this->quote_id)->update($validatedData);
-            session()->flash('message', 'Quote updated successfully!');
-        } else {
-            //quote update
-            Quote::create($validatedData);
-            session()->flash('message', 'Quote created successfully!');
-        }
+        Quote::updateOrCreate(
+            ['id' => $this->quote_id],
+            $validatedData
+        );
 
-        // return redirect()->route('crm.quote'); // Redirect back to create route
+        $message = $this->quote_id ? 'Quote updated successfully!' : 'Quote created successfully!';
+        session()->flash('message', $message);
     }
+
+    public function submit()
+{
+    $this->save();
+}
 
     public function render()
     {

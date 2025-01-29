@@ -19,7 +19,7 @@
     </form>
 </div>
 
-<div id="otp-modal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+<div id="otp-modal" class="hidden fixed inset-0  items-center justify-center bg-gray-900 bg-opacity-50">
     <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
         <h3 class="text-lg font-semibold text-gray-800">Enter OTP</h3>
         <p class="text-sm text-gray-600 mb-4">An OTP has been sent to your email. Please enter it below:</p>
