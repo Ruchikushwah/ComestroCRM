@@ -9,7 +9,7 @@
                 <path d="M3 10v11h18V10l-9-7-9 7Zm9-4.436 7 5.44V19H5v-7.996l7-5.44ZM12 15c1.103 0 2-.897 2-2s-.897-2-2-2-2 .897-2 2 .897 2 2 2Z" />
             </svg>
         </div>
-        <h1 class="text-xl font-semibold text-gray-800 ml-4">Welcome </h1>
+        <h1 class="text-xl font-semibold text-gray-800 ml-4">Welcome,{{ $userName }} </h1>
     </div>
 
     <!-- Cards Section -->
@@ -17,7 +17,7 @@
         <!-- My Open Deals Card -->
         <div class="bg-blue-100 shadow-md rounded-lg p-8 text-center">
             <h2 class="text-gray-500 text-sm">My Open Deals</h2>
-            <p class="text-2xl font-bold text-gray-800">8</p>
+            <p class="text-2xl font-bold text-gray-800">{{\App\Models\User::count()}}</p>
         </div>
 
         <!-- My Untouched Card -->
@@ -35,13 +35,8 @@
         <!-- My Leads Card -->
         <div class="bg-blue-100 shadow-md rounded-lg p-8 text-center">
             <h2 class="text-gray-500 text-sm">My Leads</h2>
-            <p class="text-2xl font-bold text-gray-800">10</p>
+            <p class="text-2xl font-bold text-gray-800">{{\App\Models\Lead::count()}}</p>
         </div>
     </div>
 </div>
-
-
-
-
-
 @endsection

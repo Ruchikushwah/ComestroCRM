@@ -141,7 +141,7 @@ class AuthController extends Controller
                 ->subject('Registration Successful');
         });
 
-        return redirect()->route('auth.login')->with('success', 'Registration successful. A confirmation email has been sent to your email address.');
+        return redirect()->route('login')->with('success', 'Registration successful. A confirmation email has been sent to your email address.');
     }
 
 
