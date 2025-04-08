@@ -5,7 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script> -->
+    <style>
+        /* Custom style for Toastr notifications */
+        .toast-info .toast-message {
+            display: flex;
+            align-items: center;
+        }
+
+        .toast-info .toast-message i {
+            margin-right: 10px;
+        }
+
+        .toast-info .toast-message .notification-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    </style>
+
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('a503e353b7b551effe5b', {
+            cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe('messages');
+        channel.bind('message.sent', function(message) {
+        
+
+            if (message.name && message.email && message.message) {
+                toastr.info(
+                    `<div class="notification-content">
+                        <i class="fas fa-user"></i> <span>   ${message.name}</span>
+                        <i class="fas fa-book" style="margin-left: 20px;"></i> <span>  ${message.email}</span>
+                         <i class="fas fa-book" style="margin-left: 20px;"></i> <span>  ${message.message}</span>
+                    </div>`,
+                    'New Post Notification', {
+                        closeButton: true,
+                        progressBar: true,
+                        timeOut: 0, // Set timeOut to 0 to make it persist until closed
+                        extendedTimeOut: 0, // Ensure the notification stays open
+                        positionClass: 'toast-top-right',
+                        enableHtml: true
+                    }
+                );
+            } else {
+                console.error('Invalid data received:', message);
+            }
+        });
+    </script>
+
     @livewireStyles
 </head>
 
@@ -86,7 +142,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('auth.logout')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <a href="" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                                     <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />

@@ -141,13 +141,13 @@ class AuthController extends Controller
                 ->subject('Registration Successful');
         });
 
-        return redirect()->route('login')->with('success', 'Registration successful. A confirmation email has been sent to your email address.');
+        return redirect()->route('auth.login')->with('success', 'Registration successful. A confirmation email has been sent to your email address.');
     }
 
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login')->with('success', 'You have been logged out.');
+        return redirect()->route('auth.login')->with('success', 'You have been logged out.');
     }
 }

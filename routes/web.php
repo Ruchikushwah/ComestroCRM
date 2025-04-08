@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Livewire\Contact\CreateContact;
 use App\Livewire\Contact\ManageContact;
 use App\Livewire\CreateLead;
@@ -15,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::prefix("crm")->group(function () {
     Route::get("/", function () {
         // Pass the authenticated user's name to the dashboard view
         return view("crm.dashboard", ['userName' => Auth::user()->name]);
-    })->middleware('auth'); // Ensure the user is authenticated
+    })->name('crm.dashboard')->middleware('auth'); // Ensure the user is authenticated
 
     Route::get("/lead", function () {
         return view("crm.lead", ['userName' => Auth::user()->name]);
@@ -41,39 +46,44 @@ Route::prefix("crm")->group(function () {
         return view("crm.account", ['userName' => Auth::user()->name]);
     })->name("crm.account")->middleware('auth');
 });
-    // Route::get("/", function () {
-    //     return view("crm.dashboard");
-    // });
-    // Route::get("/lead", function () {
-    //     return view("crm.lead");
-    // })->name("crm.lead");
+// Route::get("/", function () {
+//     return view("crm.dashboard");
+// });
+// Route::get("/lead", function () {
+//     return view("crm.lead");
+// })->name("crm.lead");
 
-    // Route::get("/contact", function () {
-    //     return view("crm.contact");
-    // })->name("crm.contact");
-    
-    // Route::get("/quotes", function () {
-    //     return view("crm.quotes");
-    // })->name("crm.quotes");
 
-    // Route::get("/vendor", function () {
-    //     return view("crm.vendor");
-    // })->name("crm.vendor");
 
-    // Route::get("/account", function () {
-    //     return view("crm.account");
-    // })->name("crm.account");
+// Route::get("/quotes", function () {
+//     return view("crm.quotes");
+// })->name("crm.quotes");
 
-Route::get('/create-quote',CreateQuote::class)->name('create-quote');
-Route::get('/create-quote/edit/{id}',CreateQuote::class)->name('create-quote.edit');
-Route::get('/manage-quote',ManageQuote::class)->name('quote.manage-quote');
+// Route::get("/vendor", function () {
+//     return view("crm.vendor");
+// })->name("crm.vendor");
 
-    Route::get('/create-lead', CreateLead::class)->name('create-lead');
-    Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
-    Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
-    Route::get('/create-contact', CreateContact::class)->name('create-contact');
-    Route::get('/create-contact/edit/{id}', CreateContact::class)->name('create-contact.edit');
-    Route::get('/manage-contact', ManageContact::class)->name('contact.manage-contact');
+// Route::get("/account", function () {
+//     return view("crm.account");
+// })->name("crm.account");
+
+
+Route::get('/send-message', function () {
+    return view('send-message');
+})->name('send-message');
+
+Route::post('/send-message', [ContactController::class, 'sendMessage'])->name('send.message');
+
+Route::get('/create-quote', CreateQuote::class)->name('create-quote');
+Route::get('/create-quote/edit/{id}', CreateQuote::class)->name('create-quote.edit');
+Route::get('/manage-quote', ManageQuote::class)->name('quote.manage-quote');
+
+Route::get('/create-lead', CreateLead::class)->name('create-lead');
+Route::get('/create-lead/edit/{id}', CreateLead::class)->name('create-lead.edit');
+Route::get('/manage-leads', ManageLeads::class)->name('manage-leads');
+Route::get('/create-contact', CreateContact::class)->name('create-contact');
+Route::get('/create-contact/edit/{id}', CreateContact::class)->name('create-contact.edit');
+Route::get('/manage-contact', ManageContact::class)->name('contact.manage-contact');
 
 
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
